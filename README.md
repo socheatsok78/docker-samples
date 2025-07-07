@@ -11,7 +11,7 @@ Here an example of the remote source code repository:
 
 ```dockerfile
 FROM scratch AS source
-ADD https://github.com/socheatsok78/docker-samples.git#examples/node/pnpm/vite /
+ADD https://github.com/socheatsok78/docker-samples.git#examples/vite-vanilla-project /
 ```
 
 And later in the `Dockerfile`, you may see a command like this:

@@ -2,7 +2,7 @@
 # NOTE: The `source` stage is only used in this example to fetch the source code from a Git repository.
 #       For your own projects, you should modify the `RUN --mount` command to point to your local source code directory.
 FROM scratch AS source
-ADD https://github.com/socheatsok78/docker-samples.git#examples/node/pnpm/vite /
+ADD https://github.com/socheatsok78/docker-samples.git#examples/vite-vanilla-project /
 
 # Stage 2: Build the Vite application
 # This stage uses Node.js with pnpm to build the Vite application.
