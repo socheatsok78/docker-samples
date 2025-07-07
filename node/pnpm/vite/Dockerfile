@@ -16,7 +16,7 @@ RUN set -xe \
     && corepack enable \
     && corepack prepare pnpm@latest-10 --activate \
     && pnpm config set store-dir /tmp/pnpm-store \
-    && mkdir -p /tmp/{dist,source}
+    && mkdir -p /tmp/dist /tmp/source
 
 WORKDIR /tmp/source
 
@@ -31,7 +31,14 @@ RUN --mount=type=bind,from=source,source=/,target=/tmp/source,readwrite=true \
     --mount=type=cache,target=/tmp/pnpm-store \
     <<EOF
     set -xe
-    pnpm install --frozen-lockfile --prefer-offline
+
+    # NOTE: This example repo does not contain a lock file.
+    #       If your project has a lock file, please specify the `--frozen-lockfile --prefer-offline` options to `pnpm install` command.
+    #       This will ensure that the exact versions of dependencies are installed.
+    #       e.g: pnpm install --frozen-lockfile --prefer-offline
+    pnpm install
+
+    # Build the application.
     pnpm run build --outDir /tmp/dist
 EOF
 
