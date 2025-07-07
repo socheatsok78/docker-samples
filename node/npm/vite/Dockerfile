@@ -8,7 +8,12 @@ ADD https://github.com/socheatsok78/docker-samples.git#examples/vite-vanilla-pro
 # This stage uses Node.js with pnpm to build the Vite application.
 # It installs pnpm using corepack, sets up a cache directory for pnpm store,
 # and then builds the application, outputting the build files to a temporary directory.
-FROM node:latest AS build
+# 
+# NOTE: For most web applications, you can use `--platform=$BUILDPLATFORM` to build the application using the host architecture.
+#       This is useful for multi-platform builds, if there are no architecture-specific dependencies.
+#       If your application has architecture-specific dependencies, you need to remove the `--platform=$BUILDPLATFORM` option
+#       and build the application for the target architecture.
+FROM --platform=$BUILDPLATFORM node:latest AS build
 
 RUN set -xe \
     && mkdir -p /tmp/npm-cache \
